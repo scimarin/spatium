@@ -1,15 +1,21 @@
 var gulp = require('gulp');
+var gls = require('gulp-live-server');
+var sourcemaps = require('gulp-sourcemaps');
+var uglify = require('gulp-uglify');
+var ts = require('gulp-typescript');
+
 var browserify = require('browserify');
+var watchify = require('watchify');
+
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
-var sourcemaps = require('gulp-sourcemaps');
-var watchify = require('watchify');
-var uglify = require('gulp-uglify');
+
 var tsify = require('tsify');
 var fancy_log = require('fancy-log');
 
 var paths = {
-    pages: ['src/*.html']
+    pages: ['src/*.html'],
+    server: 'src/server.js'
 };
 
 var watchedBrowserify = watchify(
@@ -39,7 +45,16 @@ function bundle() {
         .pipe(gulp.dest('dist'));
 }
 
-exports.default = gulp.series(gulp.parallel(copyHtml), bundle);
+function makeServer() {
+    gulp.src(paths.server)
+        .pipe(gulp.dest('dist'));
+
+    var server = gls.new('dist/server.js');
+
+    return server.start();
+}
+
+exports.default = gulp.series(gulp.parallel(copyHtml), bundle, makeServer);
 
 watchedBrowserify.on('update', bundle);
 watchedBrowserify.on('log', fancy_log);
