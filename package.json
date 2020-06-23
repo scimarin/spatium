@@ -1,0 +1,21 @@
+{
+  "name": "spatium",
+  "version": "0.1.0",
+  "description": "Toy renderer written in Typescript",
+  "main": "./dist/main.js",
+  "scripts": {
+    "gulp": "gulp"
+  },
+  "devDependencies": {
+    "browserify": "^16.5.1",
+    "fancy-log": "^1.3.3",
+    "gulp": "^4.0.2",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "ts-node": "^8.10.2",
+    "tsify": "^4.0.2",
+    "typescript": "^3.9.5",
+    "vinyl-source-stream": "^2.0.0",
+    "watchify": "^3.11.1"
+  },
+  "dependencies": {}
+}
