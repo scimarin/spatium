@@ -38,10 +38,10 @@ function bundle() {
         .bundle()
         .on('error', fancy_log)
         .pipe(source('bundle.js'))
-        .pipe(buffer())
-        .pipe(sourcemaps.init({loadMaps: true}))
-        .pipe(uglify())
-        .pipe(sourcemaps.write('./'))
+        //.pipe(buffer())
+        //.pipe(sourcemaps.init({loadMaps: true}))
+        //.pipe(uglify())
+        //.pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('dist'));
 }
 
